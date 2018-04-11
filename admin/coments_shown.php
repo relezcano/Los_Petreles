@@ -47,7 +47,7 @@
       <h1>Bienvenido <?php echo $_SESSION['name'];?> al sector de administrador</h1>
       <h2>Seleccione los comentarios que desea mostrar en el sitio web.</h2>
       <br>
-      <h3>Haga click en el boton "Empezar"<br> Luego escriba el numero de ID del comentario a publicar o borrar y presione el respectivo botón.</h3>
+      <h3>Haga click en el boton "Empezar" para mostrar los comentarios publicados.<br> Luego escriba el numero de ID del comentario que desee borrar y presione el botón "Borrar".</h3>
     </div>
   </div>
   <div class="row">
@@ -112,18 +112,18 @@
               </div>
               <?php
 
-            if(isset($_POST['idbusqueda'])){
-              $idbusqueda = ($_POST['idbusqueda']);
-              $query1 = "SELECT * FROM comentshow WHERE id = $idbusqueda";
-              $result1 = mysqli_query($link, $query1);
+              if(isset($_POST['idbusqueda'])){
+                $idbusqueda = ($_POST['idbusqueda']);
+                $query1 = "SELECT * FROM comentshow WHERE id = $idbusqueda";
+                $result1 = mysqli_query($link, $query1);
 
 
               if(isset($_POST['delete'])){
                 $query3 = "DELETE FROM comentshow WHERE id = $idbusqueda";
                 $result3 = mysqli_query($link, $query3);
                 header('Location: coments_shown.php?alt=2');
+                }
               }
-            }
             mysqli_close($link);
 
         ?>
