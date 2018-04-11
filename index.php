@@ -21,12 +21,63 @@
   <link rel="stylesheet" href="assets/gallery/style.css">
   <link rel="stylesheet" href="assets/mobirise/css/mbr-additional.css" type="text/css">
 
+<style>
 
+.table-filter {
+background-color: #fff;
+border-bottom: 1px solid #eee;
+}
+.table-filter tbody tr:hover {
+cursor: pointer;
+background-color: #eee;
+}
+.table-filter tbody tr td {
+padding: 10px;
+vertical-align: middle;
+border-top-color: #eee;
+}
+.table-filter tbody tr.selected td {
+background-color: #eee;
+}
+.table-filter tr td:first-child {
+width: 38px;
+}
+.table-filter tr td:nth-child(2) {
+width: 35px;
+}
+.table-filter .media-photo {
+	width: 35px;
+}
+.table-filter .media-body {
+    display: block;
+    /* Had to use this style to force the div to expand (wasn't necessary with my bootstrap version 3.3.6) */
+}
+.table-filter .media-meta {
+	font-size: 11px;
+	color: #999;
+}
+.table-filter .media .title {
+	color: #2BBCDE;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: normal;
+	margin: 0;
+}
+.table-filter .media .title span {
+	font-size: .8em;
+	margin-right: 20px;
+}
+.table-filter .media .summary {
+	font-size: 14px;
+}
+</style>
 
 </head>
 <body>
 
 <?php
+
+session_start();
 
 require 'include/conexion.php';
 
@@ -45,8 +96,6 @@ if(isset($_GET['alt'])){
 ?>
 
   <section class="menu cid-qOaoaeZw2d" once="menu" id="menu2-2">
-
-
 
     <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -162,23 +211,41 @@ if(isset($_GET['alt'])){
     <!--CREAR CÓDIGO PHP PARA LEER Y MOSTRAR COMENTARIOS EN ESTE LUGAR -->
     <?php
 
-    session_start();
+    $query = "SELECT * FROM comentshow ORDER BY id DESC";
+    $result = mysqli_query($link, $query);
 
-    
+    while($row = mysqli_fetch_array($result)) {
 
     ?>
+    <div class="table-container">
+      <table class="table table-filter">
+        <td>
+          <div class="media">
+    				<a class="pull-left">
+    					<img src="assets/images/ico1.png" class="media-photo" style="margin-right: 10px; margin-top: 6px">
+    				</a>
+    				<div class="media-body">
+    					<h4 class="title">
+    						<?echo $row['name'];?>
+    					</h4>
+    					<p class="summary"><?echo $row['messagge'];?></p>
+    				</div>
+    		</div>
+    	</td>
+    </tr>
+    </table>
+    </div>
+      <?}?>
+      <br>
+      <br>
 
-
-<section class="mbr-section form1 cid-qOaSXwEN50" id="form1-d">
-
-
-
+<section class="mbr-section form1 cid-qOaSXwEN50" id="form1-d" style="background-color: #9966ff">
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="title col-12 col-lg-8">
                 <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2"><strong>Consulte por su reserva</strong></h2>
-                <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5"><em>Escriba sus datos y realize su consulta o reserva. A la brevedad nos comunicaremos con usted!!</em></h3>
+                <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5" style="color: black"><em>Escriba sus datos y realize su consulta o reserva. A la brevedad nos comunicaremos con usted!!</em></h3>
             </div>
         </div>
     </div>
@@ -187,52 +254,52 @@ if(isset($_GET['alt'])){
             <div class="media-container-column col-lg-8" data-form-type="formoid">
                     <div data-form-alert="" hidden="">Su consulta o reserva ha sido enviada correctamente. A la brevedad recibirá una respuesta en el e-mail que previamente escribió.</div>
 
-                    <form class="mbr-form" action="send_form_email.php" method="post" data-form-title="Mobirise Form"><input type="hidden" name="email" data-form-email="true" value="RCAsVtq3AVTzzj/JMRC4ickbmt2sx4DeuOYV0BuEwkoTKyQbxhOAqGQzeIQwRNq2VHxZdv1G5q9MGKp9gv/3R1LMysPMUSTgYlZJYQ6tAPaNgDuN+a84gzdgw/947OoS" data-form-field="Email">
+                    <form name="consulta" action="send_form_email.php" method="post">
                         <div class="row row-sm-offset">
                             <div class="col-md-4 multi-horizontal" data-for="name">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="name-form1-d">Nombre y apellido</label>
+                                    <label class="form-control-label mbr-fonts-style display-7">Nombre y apellido</label>
                                     <input type="text" class="form-control" name="name" data-form-field="Name" required="" id="name-form1-d">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="email">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="email-form1-d">Email</label>
+                                    <label class="form-control-label mbr-fonts-style display-7">Email</label>
                                     <input type="email" class="form-control" name="email" data-form-field="Email" required="" id="email-form1-d">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="phone">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-d">Teléfono</label>
-                                    <input type="tel" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-d">
+                                    <label class="form-control-label mbr-fonts-style display-7">Teléfono</label>
+                                    <input type="text" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-d">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="dateIn">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-d">Fecha entrada</label>
+                                    <label class="form-control-label mbr-fonts-style display-7">Fecha entrada</label>
                                     <input type="date" class="form-control" name="dateIn" data-form-field="dateIn" id="dateIn-form1-d" required="">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="dateOut">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-d">Fecha salida</label>
+                                    <label class="form-control-label mbr-fonts-style display-7">Fecha salida</label>
                                     <input type="date" class="form-control" name="dateOut" data-form-field="dateIn" id="dateOut-form1-d" required="">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="pax">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7" for="phone-form1-d">Cantidad de pasajeros</label>
+                                    <label class="form-control-label mbr-fonts-style display-7">Cantidad de pasajeros</label>
                                     <input type="text" class="form-control" name="pax" data-form-field="pax" id="pax-form1-d" required="">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group" data-for="message">
-                            <label class="form-control-label mbr-fonts-style display-7" for="message-form1-d">Mensaje</label>
-                            <textarea type="text" class="form-control" name="message" rows="7" data-form-field="Message" id="message-form1-d"></textarea>
+                            <label class="form-control-label mbr-fonts-style display-7">Mensaje</label>
+                            <textarea type="text" class="form-control" name="messagge" rows="3" data-form-field="Message" id="message-form1-d"></textarea>
                         </div>
 
                         <span class="input-group-btn">
-                            <button href="" type="submit" class="btn btn-primary btn-form display-4">Enviar</button>
+                            <button type="submit" class="btn btn-primary btn-form display-4">Enviar</button>
                         </span>
                     </form>
             </div>
@@ -241,10 +308,6 @@ if(isset($_GET['alt'])){
 </section>
 
 <section class="cid-qOatWUJj9F" id="footer2-8">
-
-
-
-
 
     <div class="container">
         <div class="media-container-row content mbr-white">
@@ -262,7 +325,7 @@ if(isset($_GET['alt'])){
                     <br><a class="text-primary" href="">Facebook</a>&nbsp;<br><a class="text-primary" href="">Twitter</a><a class="text-primary" href=""><br></a><a class="text-primary" href="https: //mobirise.com/mobirise-free-mac.zip">Instagram</a>&nbsp;<br>
                     <br><strong>Feedback</strong>
                     <br>
-                    <br>Please send us your ideas, bug reports, suggestions! Any feedback would be appreciated.
+                    <br>Si tiene alguna sugerencia envíela a través del área de comentarios. Buscamos mejorar nuestros servicios para la comodidad de nuestros huéspedes.
                 </p>
             </div>
             <div class="col-12 col-md-6">
@@ -277,7 +340,7 @@ if(isset($_GET['alt'])){
             </div>
             <div class="media-container-row mbr-white">
                 <div class="col-sm-6 copyright">
-                    <p class="mbr-text mbr-fonts-style display-7">Website realizado por Ramiro Lezcano.<br>E-mail: relezcano369@gmail.com<br>Tel.: +54 0294-154632918</p>
+                    <p class="mbr-text mbr-fonts-style display-7" style="font-size: 12px">Website realizado por Ramiro Lezcano.<br>E-mail: relezcano369@gmail.com<br>Tel.: +54 0294-154632918</p>
                 </div>
                 <div class="col-md-6">
                     <div class="social-list align-right">
@@ -296,9 +359,6 @@ if(isset($_GET['alt'])){
                                 <span class="mbr-iconfont mbr-iconfont-social socicon-instagram socicon"></span>
                             </a>
                         </div>
-
-
-
                     </div>
                 </div>
             </div>
