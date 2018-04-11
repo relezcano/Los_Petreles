@@ -191,7 +191,7 @@ if(isset($_GET['alt'])){
                   </div>
                   <div class="row justify-content-center">
                     <div class="col-lg-12">
-                      <div class="form-group" data-for="message">
+                      <div class="form-group" data-for="messagge">
                         <label class="form-control-label mbr-fonts-style display-7"  style="color: #ffffff"><strong>Comentario</strong></label>
                         <textarea type="text" class="form-control" name="messagge" rows="5" placeholder="Escriba aquí su comentario..." required></textarea>
                       </div>
@@ -208,7 +208,7 @@ if(isset($_GET['alt'])){
               </div>
 
 
-    <!--CREAR CÓDIGO PHP PARA LEER Y MOSTRAR COMENTARIOS EN ESTE LUGAR -->
+    <!-- MOSTRAR COMENTARIOS EN ESTE LUGAR -->
     <?php
 
     $query = "SELECT * FROM comentshow ORDER BY id DESC";
@@ -239,56 +239,55 @@ if(isset($_GET['alt'])){
       <br>
       <br>
 
-<section class="mbr-section form1 cid-qOaSXwEN50" id="form1-d" style="background-color: #9966ff">
+<section class="mbr-section form1 cid-qOaSXwEN50" id="form1-d" style="background-color: #676767; opacity: .9">
 
     <div class="container">
         <div class="row justify-content-center">
             <div class="title col-12 col-lg-8">
-                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2"><strong>Consulte por su reserva</strong></h2>
-                <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5" style="color: black"><em>Escriba sus datos y realize su consulta o reserva. A la brevedad nos comunicaremos con usted!!</em></h3>
+                <h2 class="mbr-section-title align-center pb-3 mbr-fonts-style display-2" style="color: white"><strong>Consulte por su reserva</strong></h2>
+                <h3 class="mbr-section-subtitle align-center mbr-light pb-3 mbr-fonts-style display-5" style="color: white"><em>Escriba sus datos y realize su consulta o reserva. A la brevedad nos comunicaremos con usted!!</em></h3>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="row justify-content-center">
             <div class="media-container-column col-lg-8" data-form-type="formoid">
-                    <div data-form-alert="" hidden="">Su consulta o reserva ha sido enviada correctamente. A la brevedad recibirá una respuesta en el e-mail que previamente escribió.</div>
 
                     <form name="consulta" action="send_form_email.php" method="post">
                         <div class="row row-sm-offset">
                             <div class="col-md-4 multi-horizontal" data-for="name">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7">Nombre y apellido</label>
+                                    <label class="form-control-label mbr-fonts-style display-7">Nombre y apellido *</label>
                                     <input type="text" class="form-control" name="name" data-form-field="Name" required="" id="name-form1-d">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="email">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7">Email</label>
+                                    <label class="form-control-label mbr-fonts-style display-7">Email *</label>
                                     <input type="email" class="form-control" name="email" data-form-field="Email" required="" id="email-form1-d">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="phone">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7">Teléfono</label>
+                                    <label class="form-control-label mbr-fonts-style display-7">Teléfono *</label>
                                     <input type="text" class="form-control" name="phone" data-form-field="Phone" id="phone-form1-d">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="dateIn">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7">Fecha entrada</label>
+                                    <label class="form-control-label mbr-fonts-style display-7">Fecha entrada *</label>
                                     <input type="date" class="form-control" name="dateIn" data-form-field="dateIn" id="dateIn-form1-d" required="">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="dateOut">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7">Fecha salida</label>
+                                    <label class="form-control-label mbr-fonts-style display-7">Fecha salida *</label>
                                     <input type="date" class="form-control" name="dateOut" data-form-field="dateIn" id="dateOut-form1-d" required="">
                                 </div>
                             </div>
                             <div class="col-md-4 multi-horizontal" data-for="pax">
                                 <div class="form-group">
-                                    <label class="form-control-label mbr-fonts-style display-7">Cantidad de pasajeros</label>
+                                    <label class="form-control-label mbr-fonts-style display-7">Cantidad de pasajeros *</label>
                                     <input type="text" class="form-control" name="pax" data-form-field="pax" id="pax-form1-d" required="">
                                 </div>
                             </div>
